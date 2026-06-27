@@ -9,7 +9,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="bg-white">
+    <article className="bg-white duration-300 transition-all border-3 border-transparent hover:border-[#000000]">
       <Link
         href={product.href}
         target="_blank"
