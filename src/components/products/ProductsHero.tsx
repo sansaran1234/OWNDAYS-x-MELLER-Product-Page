@@ -49,10 +49,10 @@ export function ProductsHero() {
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-[260px] z-10 flex justify-center px-5">
         <motion.div
-          className="w-full max-w-[412px]"
+          className="w-full max-w-[420px]"
           style={shouldReduceMotion ? undefined : { y: titleY }}
         >
-          <DisplayMessage message="PRODUCTS" as="h1" />
+          <DisplayMessage message="PRODUCTS" as="h1" reveal />
         </motion.div>
       </div>
     </section>

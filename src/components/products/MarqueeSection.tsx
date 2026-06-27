@@ -1,31 +1,13 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { DisplayMessage } from "@/components/ui/display-message";
 import { Marquee } from "@/components/ui/marquee";
 import { marqueeGallery } from "@/data/marquee-gallery";
-
-type SectionHeadingProps = {
-  children: string;
-  barClassName: string;
-};
 
 type MarqueeGalleryItemProps = {
   src: string;
   alt: string;
 };
-
-function SectionHeading({ children, barClassName }: SectionHeadingProps) {
-  return (
-    <div className="relative inline-block">
-      <div
-        className={`absolute top-7 left-[6px] h-[78px] bg-black md:top-8 md:h-[112px] ${barClassName}`}
-        aria-hidden
-      />
-      <h2 className="font-display relative text-[56px] leading-none font-bold text-[#ff6723] md:text-[160px] md:leading-[160px]">
-        {children}
-      </h2>
-    </div>
-  );
-}
 
 function MarqueeGalleryItem({ src, alt }: MarqueeGalleryItemProps) {
   return (
@@ -54,17 +36,25 @@ function MarqueeGalleryItem({ src, alt }: MarqueeGalleryItemProps) {
 export function MarqueeSection() {
   return (
     <section className="overflow-hidden bg-[#ff6723] pb-0">
-      <div className="px-5 pt-10 lg:px-[70px] lg:pt-16">
-        <SectionHeading barClassName="w-[280px] md:w-[422px]">
-          HOW TO
-        </SectionHeading>
-      </div>
-
       <div className="relative mt-6 lg:mt-10">
-        <div className="relative z-20 px-5 lg:px-[70px]">
-          <SectionHeading barClassName="w-[320px] md:w-[665px]">
-            STYLE THEM
-          </SectionHeading>
+        <div className="relative z-20 flex flex-col gap-0 px-5 lg:px-[70px]">
+          <DisplayMessage
+            message="HOW TO"
+            as="h2"
+            size="section"
+            align="left"
+            barClassName="w-[280px] md:w-[422px]"
+            reveal
+          />
+          <DisplayMessage
+            message="STYLE THEM"
+            as="h2"
+            size="section"
+            align="left"
+            barClassName="w-[320px] md:w-[665px]"
+            reveal
+            revealDelay={0.12}
+          />
         </div>
 
         <div className="-mt-12 md:-mt-16 lg:-mt-20">
