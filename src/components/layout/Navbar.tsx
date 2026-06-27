@@ -46,9 +46,13 @@ export function Navbar() {
         isOverProductGrid ? "bg-[#ff6723]" : "bg-transparent"
       }`}
     >
-      <div className={`mx-auto flex max-w-[1300px] items-center justify-between px-5 md:px-0 duration-300 
-        ${isOverProductGrid ? "py-4 md:py-[10px] duration-300" : "py-6 md:py-[25px] duration-300"}`}>
-        <Link href="/" className="relative block h-[52px] w-[220px] md:w-[351px]">
+      <div
+        className={`mx-auto flex max-w-[1300px] items-center justify-between px-5 duration-300 md:px-0 ${isOverProductGrid ? "py-4 duration-300 md:py-[10px]" : "py-6 duration-300 md:py-[25px]"}`}
+      >
+        <Link
+          href="/"
+          className="relative block h-[52px] w-[220px] md:w-[351px]"
+        >
           <Image
             src="/images/common/logo-header.svg"
             alt="OWNDAYS × MELLER"
@@ -58,12 +62,15 @@ export function Navbar() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-[50px] md:flex" aria-label="Main">
+        <nav
+          className="hidden items-center gap-[50px] md:flex"
+          aria-label="Main"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`text-[15px] uppercase tracking-[0.7px] text-white transition-opacity hover:opacity-70 ${
+              className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
                 "active" in link && link.active ? "font-bold" : "font-medium"
               }`}
             >

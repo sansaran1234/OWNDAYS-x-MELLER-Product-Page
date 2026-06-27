@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 import { DisplayMessage } from "@/components/ui/display-message";
+
 export function ProductsHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -23,10 +24,7 @@ export function ProductsHero() {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.12, 1.2]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden bg-[#ff6723]"
-    >
+    <section ref={sectionRef} className="relative overflow-hidden bg-[#ff6723]">
       <div className="relative mx-auto h-[420px] w-full md:h-[633px]">
         <motion.div
           className="absolute inset-0 origin-center"
@@ -49,7 +47,6 @@ export function ProductsHero() {
           />
         </motion.div>
       </div>
-
       <div className="pointer-events-none absolute inset-x-0 top-[260px] z-10 flex justify-center px-5">
         <motion.div
           className="w-full max-w-[412px]"
@@ -57,6 +54,7 @@ export function ProductsHero() {
         >
           <DisplayMessage message="PRODUCTS" as="h1" />
         </motion.div>
-      </div>    </section>
+      </div>
+    </section>
   );
 }

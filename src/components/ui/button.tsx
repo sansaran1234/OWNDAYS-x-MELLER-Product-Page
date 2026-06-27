@@ -16,8 +16,10 @@ export const buttonVariants = cva(
         ghost: "bg-transparent text-white hover:opacity-70",
       },
       size: {
-        store: "h-[54px] min-w-[280px] rounded-full px-10 text-base md:min-w-[373px]",
-        allItems: "h-[70px] min-w-[320px] rounded-full px-10 text-lg md:min-w-[428px]",
+        store:
+          "h-[54px] min-w-[280px] rounded-full px-10 text-base md:min-w-[373px]",
+        allItems:
+          "h-[70px] min-w-[320px] rounded-full px-10 text-lg md:min-w-[428px]",
         icon: "size-[70px] rounded-none",
         menu: "size-6 rounded-none p-0",
       },

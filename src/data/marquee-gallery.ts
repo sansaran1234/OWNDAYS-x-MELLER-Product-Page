@@ -10,5 +10,5 @@ export const marqueeGallery = [
   { id: "9", src: "/images/marquee/marquee-9.webp", alt: "Style look 9" },
   { id: "10", src: "/images/marquee/marquee-10.webp", alt: "Style look 10" },
   { id: "11", src: "/images/marquee/marquee-11.webp", alt: "Style look 11" },
-  { id: "12", src: "/images/marquee/marquee-12.webp", alt: "Style look 12" }
+  { id: "12", src: "/images/marquee/marquee-12.webp", alt: "Style look 12" },
 ] as const;

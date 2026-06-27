@@ -14,7 +14,13 @@ export function ColorSwatch({ swatch, selected = false }: ColorSwatchProps) {
       }`}
     >
       <span className="relative size-[28px] overflow-hidden rounded-full">
-        <Image src={swatch.src} alt={swatch.alt} fill className="object-cover" sizes="28px" />
+        <Image
+          src={swatch.src}
+          alt={swatch.alt}
+          fill
+          className="object-cover"
+          sizes="28px"
+        />
       </span>
     </span>
   );

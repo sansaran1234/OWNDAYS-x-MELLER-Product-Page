@@ -124,7 +124,11 @@ export const products: Product[] = [
 
 export const navLinks = [
   { label: "ABOUT", href: "https://meller.owndays.com/about" },
-  { label: "PRODUCTS", href: "https://meller.owndays.com/products", active: true },
+  {
+    label: "PRODUCTS",
+    href: "https://meller.owndays.com/products",
+    active: true,
+  },
   { label: "STORES", href: "https://meller.owndays.com/stores" },
 ] as const;
 
@@ -136,9 +140,18 @@ export const footerNavLinks = [
 
 export const footerLegalLinks = [
   { label: "Contact Us", href: "https://meller.owndays.com/contact" },
-  { label: "Privacy Policy", href: "https://www.owndays.com/jp/ja/information/privacy" },
-  { label: "Terms of Use", href: "https://www.owndays.com/jp/ja/information/terms" },
-  { label: "特定商取引法表示", href: "https://www.owndays.com/jp/ja/information/legal" },
+  {
+    label: "Privacy Policy",
+    href: "https://www.owndays.com/jp/ja/information/privacy",
+  },
+  {
+    label: "Terms of Use",
+    href: "https://www.owndays.com/jp/ja/information/terms",
+  },
+  {
+    label: "特定商取引法表示",
+    href: "https://www.owndays.com/jp/ja/information/legal",
+  },
 ] as const;
 
 export const onlineStoreHref = "https://www.owndays.com/jp/ja/products";
