@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 import { marqueeGallery } from "@/data/marquee-gallery";
 
@@ -30,10 +31,12 @@ function MarqueeGalleryItem({ src, alt }: MarqueeGalleryItemProps) {
   return (
     <article className="relative h-[420px] w-[320px] shrink-0 md:h-[611px] md:w-[405px]">
       <Image src={src} alt={alt} fill className="object-cover" sizes="405px" />
-      <button
+      <Button
         type="button"
+        variant="icon"
+        size="icon"
         aria-label={`Expand ${alt}`}
-        className="absolute bottom-0 right-0 flex size-[70px] items-center justify-center bg-[#ff6723]"
+        className="absolute bottom-0 right-0"
       >
         <span className="relative block size-[47px]">
           <Image
@@ -43,7 +46,7 @@ function MarqueeGalleryItem({ src, alt }: MarqueeGalleryItemProps) {
             className="object-contain"
           />
         </span>
-      </button>
+      </Button>
     </article>
   );
 }
@@ -61,7 +64,7 @@ export function MarqueeSection() {
         </div>
 
         <div className="-mt-12 md:-mt-16 lg:-mt-20">
-          <Marquee pauseOnHover repeat={2} className="[--duration:60s]">
+          <Marquee pauseOnHover={false} repeat={2} className="[--duration:60s]">
             {marqueeGallery.map((item) => (
               <MarqueeGalleryItem key={item.id} src={item.src} alt={item.alt} />
             ))}

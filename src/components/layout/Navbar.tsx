@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { navLinks } from "@/data/products";
 
 export function Navbar() {
@@ -71,9 +72,11 @@ export function Navbar() {
           ))}
         </nav>
 
-        <button
+        <Button
           type="button"
-          className="relative h-5 w-6 md:hidden"
+          variant="ghost"
+          size="menu"
+          className="relative md:hidden"
           aria-label="Open menu"
         >
           <Image
@@ -82,7 +85,7 @@ export function Navbar() {
             fill
             className="object-contain"
           />
-        </button>
+        </Button>
       </div>
     </header>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   footerLegalLinks,
   footerNavLinks,
@@ -73,28 +74,26 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-white/20 py-8 text-xs uppercase tracking-[0.7px] md:flex-row md:items-center md:justify-between md:text-[13px]">
-          <div className="flex flex-wrap gap-x-10 gap-y-3">
+        <div className="mt-16 flex flex-col gap-8 border-t border-white/20 py-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-x-10 gap-y-3 text-xs uppercase tracking-[0.7px] md:text-[13px]">
             {footerLegalLinks.map((link) => (
               <Link key={link.label} href={link.href} className="hover:opacity-70">
                 {link.label}
               </Link>
             ))}
           </div>
+
+          <Button variant="onlineStore" size="store" asChild>
+            <Link href={onlineStoreHref} target="_blank" rel="noopener noreferrer">
+              ONLINE STORE
+            </Link>
+          </Button>
+
           <p className="text-[12px] normal-case md:text-right">
             COPYRIGHT (C) OWNDAYS co., ltd. ALL RIGHTS RESERVED.
           </p>
         </div>
       </div>
-
-      <Link
-        href={onlineStoreHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="sr-only"
-      >
-        Go to online store
-      </Link>
     </footer>
   );
 }
