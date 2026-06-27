@@ -2,7 +2,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Navbar } from "@/components/layout/Navbar";
 import { ProductGrid } from "./ProductGrid";
 import { ProductsHero } from "./ProductsHero";
-import { StyleThemSection } from "./StyleThemSection";
+import { MarqueeSection } from "./MarqueeSection";
 
 export function ProductsPage() {
   return (
@@ -11,7 +11,7 @@ export function ProductsPage() {
       <main>
         <ProductsHero />
         <ProductGrid />
-        <StyleThemSection />
+        <MarqueeSection />
       </main>
       <SiteFooter />
     </div>

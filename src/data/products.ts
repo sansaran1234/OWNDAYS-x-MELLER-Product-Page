@@ -122,13 +122,6 @@ export const products: Product[] = [
   },
 ];
 
-export const styleGallery = [
-  { id: "1", src: "/images/figma/style/style-1.webp", alt: "Style look 1" },
-  { id: "2", src: "/images/figma/style/style-2.webp", alt: "Style look 2" },
-  { id: "3", src: "/images/figma/style/style-3.webp", alt: "Style look 3" },
-  { id: "4", src: "/images/figma/style/style-4.webp", alt: "Style look 4" },
-] as const;
-
 export const navLinks = [
   { label: "ABOUT", href: "https://meller.owndays.com/about" },
   { label: "PRODUCTS", href: "https://meller.owndays.com/products", active: true },
