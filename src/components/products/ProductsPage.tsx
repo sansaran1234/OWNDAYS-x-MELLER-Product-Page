@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { ProductGrid } from "./ProductGrid";
 import { ProductsHero } from "./ProductsHero";
@@ -13,7 +13,7 @@ export function ProductsPage() {
         <ProductGrid />
         <MarqueeSection />
       </main>
-      <SiteFooter />
+      <Footer />
     </div>
   );
 }
