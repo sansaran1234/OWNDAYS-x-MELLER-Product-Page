@@ -1,11 +1,52 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/data/products";
 
 export function Navbar() {
+  const headerRef = useRef<HTMLElement>(null);
+  const [isOverProductGrid, setIsOverProductGrid] = useState(false);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    const productGrid = document.getElementById("product-grid");
+    if (!header || !productGrid) return;
+
+    let frame = 0;
+
+    const updateNavbarTheme = () => {
+      const navHeight = header.offsetHeight;
+      const gridTop = productGrid.getBoundingClientRect().top;
+      setIsOverProductGrid(gridTop <= navHeight);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateNavbarTheme);
+    };
+
+    updateNavbarTheme();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full">
-      <div className="mx-auto flex max-w-[1300px] items-center justify-between px-5 py-6 md:px-0 md:py-[25px]">
+    <header
+      ref={headerRef}
+      className={`fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300 ${
+        isOverProductGrid ? "bg-[#ff6723]" : "bg-transparent"
+      }`}
+    >
+      <div className={`mx-auto flex max-w-[1300px] items-center justify-between px-5 md:px-0 duration-300 
+        ${isOverProductGrid ? "py-4 md:py-[10px] duration-300" : "py-6 md:py-[25px] duration-300"}`}>
         <Link href="/" className="relative block h-[52px] w-[220px] md:w-[351px]">
           <Image
             src="/images/common/logo-header.svg"
