@@ -1,14 +1,24 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/data/products";
+import {
+  headerVariants,
+  linkVariants,
+  logoVariants,
+  menuVariants,
+  navVariants,
+  rowVariants,
+} from "@/lib/navbar-animation";
 
 export function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const [isOverProductGrid, setIsOverProductGrid] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const header = headerRef.current;
@@ -39,61 +49,138 @@ export function Navbar() {
     };
   }, []);
 
-  return (
-    <header
-      ref={headerRef}
-      className={`fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300 ${
-        isOverProductGrid ? "bg-[#ff6723]" : "bg-transparent"
-      }`}
-    >
-      <div
-        className={`mx-auto flex max-w-[1300px] items-center justify-between px-5 duration-300 md:px-0 ${isOverProductGrid ? "py-4 duration-300 md:py-[10px]" : "py-6 duration-300 md:py-[25px]"}`}
-      >
-        <Link
-          href="/"
-          className="relative block h-[52px] w-[220px] md:w-[351px]"
-        >
-          <Image
-            src="/images/common/logo-header.svg"
-            alt="OWNDAYS × MELLER"
-            fill
-            className="object-contain object-left"
-            priority
-          />
-        </Link>
+  const innerClassName = `mx-auto flex max-w-[1300px] items-center justify-between px-5 duration-300 md:px-0 ${
+    isOverProductGrid
+      ? "py-4 duration-300 md:py-[10px]"
+      : "py-6 duration-300 md:py-[25px]"
+  }`;
 
-        <nav
+  const headerClassName = `fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300 ${
+    isOverProductGrid ? "bg-[#ff6723]" : "bg-transparent"
+  }`;
+
+  if (shouldReduceMotion) {
+    return (
+      <header ref={headerRef} className={headerClassName}>
+        <div className={innerClassName}>
+          <Link
+            href="/"
+            className="relative block h-[52px] w-[220px] md:w-[351px]"
+          >
+            <Image
+              src="/images/common/logo-header.svg"
+              alt="OWNDAYS × MELLER"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </Link>
+
+          <nav
+            className="hidden items-center gap-[50px] md:flex"
+            aria-label="Main"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
+                  "active" in link && link.active ? "font-bold" : "font-medium"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Button
+            type="button"
+            variant="ghost"
+            size="menu"
+            className="relative md:hidden"
+            aria-label="Open menu"
+          >
+            <Image
+              src="/images/common/hamburger.svg"
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </Button>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <motion.header
+      ref={headerRef}
+      className={headerClassName}
+      initial="hidden"
+      animate="visible"
+      variants={headerVariants}
+    >
+      <motion.div
+        className={innerClassName}
+        variants={rowVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={logoVariants}>
+          <Link
+            href="/"
+            className="relative block h-[52px] w-[220px] md:w-[351px]"
+          >
+            <Image
+              src="/images/common/logo-header.svg"
+              alt="OWNDAYS × MELLER"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </Link>
+        </motion.div>
+
+        <motion.nav
           className="hidden items-center gap-[50px] md:flex"
           aria-label="Main"
+          variants={navVariants}
         >
           {navLinks.map((link) => (
-            <Link
+            <motion.span
               key={link.label}
-              href={link.href}
-              className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
-                "active" in link && link.active ? "font-bold" : "font-medium"
-              }`}
+              variants={linkVariants}
+              className="inline-block"
             >
-              {link.label}
-            </Link>
+              <Link
+                href={link.href}
+                className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
+                  "active" in link && link.active ? "font-bold" : "font-medium"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </motion.span>
           ))}
-        </nav>
+        </motion.nav>
 
-        <Button
-          type="button"
-          variant="ghost"
-          size="menu"
-          className="relative md:hidden"
-          aria-label="Open menu"
-        >
-          <Image
-            src="/images/common/hamburger.svg"
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </Button>
-      </div>
-    </header>
+        <motion.div variants={menuVariants} className="md:hidden">
+          <Button
+            type="button"
+            variant="ghost"
+            size="menu"
+            className="relative"
+            aria-label="Open menu"
+          >
+            <Image
+              src="/images/common/hamburger.svg"
+              alt=""
+              fill
+              className="object-contain"
+            />
+          </Button>
+        </motion.div>
+      </motion.div>
+    </motion.header>
   );
 }
