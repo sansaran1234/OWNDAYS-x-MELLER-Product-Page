@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { gtAmerica } from "@/lib/fonts";
 import "./globals.css";
-
-const notoSansJp = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   title: "商品一覧 | OWNDAYS × MELLER（メラー） 公式オンラインストア｜サングラス",
@@ -45,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoSansJp.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ja" className={`${gtAmerica.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
