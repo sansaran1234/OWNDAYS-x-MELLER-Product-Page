@@ -1,3 +1,8 @@
+export type ProductSwatch = {
+  src: string;
+  alt: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -5,6 +10,7 @@ export type Product = {
   price: number;
   imageSrc: string;
   href: string;
+  swatches: ProductSwatch[];
 };
 
 export const products: Product[] = [
@@ -15,6 +21,12 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/adisa.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2001D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+      { src: "/images/figma/swatches/swatch-3.webp", alt: "Color 3" },
+      { src: "/images/products/adisa.webp", alt: "Color 4" },
+    ],
   },
   {
     id: "chauen",
@@ -23,6 +35,12 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/chauen.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2002D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+      { src: "/images/figma/swatches/swatch-3.webp", alt: "Color 3" },
+      { src: "/images/products/chauen.webp", alt: "Color 4" },
+    ],
   },
   {
     id: "cumbi",
@@ -31,6 +49,12 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/cumbi.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2003D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+      { src: "/images/figma/swatches/swatch-3.webp", alt: "Color 3" },
+      { src: "/images/products/cumbi.webp", alt: "Color 4" },
+    ],
   },
   {
     id: "kessie",
@@ -39,6 +63,12 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/kessie.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2004D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+      { src: "/images/figma/swatches/swatch-3.webp", alt: "Color 3" },
+      { src: "/images/products/kessie.webp", alt: "Color 4" },
+    ],
   },
   {
     id: "nayah",
@@ -47,6 +77,12 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/nayah.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2005D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+      { src: "/images/figma/swatches/swatch-3.webp", alt: "Color 3" },
+      { src: "/images/products/nayah.webp", alt: "Color 4" },
+    ],
   },
   {
     id: "jamil",
@@ -55,6 +91,10 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/jamil.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2006D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+    ],
   },
   {
     id: "kubu",
@@ -63,6 +103,10 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/kubu.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2007D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+    ],
   },
   {
     id: "tana",
@@ -71,13 +115,38 @@ export const products: Product[] = [
     price: 7800,
     imageSrc: "/images/products/tana.webp",
     href: "https://www.owndays.com/jp/ja/products/ML2008D-6S",
+    swatches: [
+      { src: "/images/figma/swatches/swatch-1.webp", alt: "Color 1" },
+      { src: "/images/figma/swatches/swatch-2.webp", alt: "Color 2" },
+    ],
   },
 ];
 
+export const styleGallery = [
+  { id: "1", src: "/images/figma/style/style-1.webp", alt: "Style look 1" },
+  { id: "2", src: "/images/figma/style/style-2.webp", alt: "Style look 2" },
+  { id: "3", src: "/images/figma/style/style-3.webp", alt: "Style look 3" },
+  { id: "4", src: "/images/figma/style/style-4.webp", alt: "Style look 4" },
+] as const;
+
 export const navLinks = [
+  { label: "ABOUT", href: "https://meller.owndays.com/about" },
+  { label: "PRODUCTS", href: "https://meller.owndays.com/products", active: true },
+  { label: "STORES", href: "https://meller.owndays.com/stores" },
+] as const;
+
+export const footerNavLinks = [
   { label: "ABOUT", href: "https://meller.owndays.com/about" },
   { label: "PRODUCTS", href: "https://meller.owndays.com/products" },
   { label: "STORES", href: "https://meller.owndays.com/stores" },
 ] as const;
 
+export const footerLegalLinks = [
+  { label: "Contact Us", href: "https://meller.owndays.com/contact" },
+  { label: "Privacy Policy", href: "https://www.owndays.com/jp/ja/information/privacy" },
+  { label: "Terms of Use", href: "https://www.owndays.com/jp/ja/information/terms" },
+  { label: "特定商取引法表示", href: "https://www.owndays.com/jp/ja/information/legal" },
+] as const;
+
 export const onlineStoreHref = "https://www.owndays.com/jp/ja/products";
+export const owndaysHref = "https://www.owndays.com/jp/ja";

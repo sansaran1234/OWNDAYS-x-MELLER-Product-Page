@@ -2,30 +2,25 @@ import Image from "next/image";
 
 export function ProductsHero() {
   return (
-    <section className="relative bg-black">
-      <div className="relative mx-auto aspect-[375/280] w-full md:aspect-[1400/600]">
+    <section className="relative bg-[#ff6723]">
+      <div className="relative mx-auto h-[420px] w-full overflow-hidden md:h-[633px]">
         <Image
-          src="/images/products/header-sp.webp"
-          alt="PRODUCTS"
+          src="/images/figma/hero.webp"
+          alt=""
           fill
-          className="object-cover md:hidden"
+          className="object-cover"
           priority
-          sizes="100vw"
-        />
-        <Image
-          src="/images/products/header-pc.webp"
-          alt="PRODUCTS"
-          fill
-          className="hidden object-cover md:block"
-          priority
-          sizes="100vw"
+          sizes="80vw"
         />
       </div>
 
-      <div className="mx-auto bg-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[67px]">
-        <h1 className="text-center text-3xl font-bold text-[#FF6723] md:text-[90px] mt-[-27px]">
-          PRODUCTS
-        </h1>
+      <div className="pointer-events-none absolute left-1/2 top-[260px] z-10 w-full max-w-[412px] -translate-x-1/2 px-5 md:top-[260px]">
+        <div className="relative flex items-center justify-center">
+          <div className="absolute inset-x-0 top-4 h-[78px] bg-black" aria-hidden />
+          <h1 className="relative font-display text-[64px] font-bold leading-none text-[#ff6723] md:text-[110px] md:leading-[110px]">
+            PRODUCTS
+          </h1>
+        </div>
       </div>
     </section>
   );

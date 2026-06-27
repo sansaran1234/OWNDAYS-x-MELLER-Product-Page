@@ -26,3 +26,20 @@ export const gtAmerica = localFont({
   variable: "--font-gt-america",
   display: "swap",
 });
+
+export const gtAmericaCompressed = localFont({
+  src: [
+    {
+      path: "../../public/fonts/gt-america-trial-webfont/GT-America-Compressed-Bold-Trial.woff",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/gt-america-trial-webfont/GT-America-Compressed-Black-Trial.woff",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-gt-america-compressed",
+  display: "swap",
+});

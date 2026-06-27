@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
+  --background: #ff6723;
   --foreground: #ffffff;
+  --orange: #ff6723;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-orange: var(--orange);
   --font-sans: var(--font-gt-america);
+  --font-display: var(--font-gt-america-compressed);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-gt-america), "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-gt-america-compressed), var(--font-gt-america), sans-serif;
 }

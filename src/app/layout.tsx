@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { gtAmerica } from "@/lib/fonts";
+import { gtAmerica, gtAmericaCompressed } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -39,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${gtAmerica.variable} h-full antialiased`}>
+    <html
+      lang="ja"
+      className={`${gtAmerica.variable} ${gtAmericaCompressed.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
