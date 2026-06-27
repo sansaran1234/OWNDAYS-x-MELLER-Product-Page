@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-
+import { DisplayMessage } from "@/components/ui/display-message";
 export function ProductsHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -52,15 +52,11 @@ export function ProductsHero() {
 
       <div className="pointer-events-none absolute inset-x-0 top-[260px] z-10 flex justify-center px-5">
         <motion.div
-          className="relative w-full max-w-[412px]"
+          className="w-full max-w-[412px]"
           style={shouldReduceMotion ? undefined : { y: titleY }}
         >
-          <div className="absolute inset-x-0 top-4 h-[78px] bg-black" aria-hidden />
-          <h1 className="relative text-center font-display text-[64px] font-bold leading-none text-[#ff6723] md:text-[110px] md:leading-[110px]">
-            PRODUCTS
-          </h1>
+          <DisplayMessage message="PRODUCTS" as="h1" />
         </motion.div>
-      </div>
-    </section>
+      </div>    </section>
   );
 }
