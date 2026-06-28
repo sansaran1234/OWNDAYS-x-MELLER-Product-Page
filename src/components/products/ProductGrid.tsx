@@ -31,14 +31,14 @@ export function ProductGrid() {
 
   return (
     <section id="product-grid" className="bg-[#ff6723]">
-      <div className="mx-auto grid max-w-[1300px] grid-cols-1 gap-[17px] px-5 pt-16 pb-12 md:grid-cols-2 lg:grid-cols-3 lg:px-[70px] lg:pt-[130px] lg:pb-16">
+      <div className="mx-auto grid max-w-[1300px] grid-cols-1 items-start gap-[17px] px-5 pt-16 pb-12 md:grid-cols-2 lg:grid-cols-3 lg:px-[70px] lg:pt-[130px] lg:pb-16">
         {isLoading ? (
           Array.from({ length: SKELETON_COUNT }).map((_, index) => (
             <ProductCardSkeleton key={`product-skeleton-${index}`} />
           ))
         ) : products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          products.map((product, index) => (
+            <ProductCard key={product.id} product={product} index={index} />
           ))
         ) : (
           <NotFoundData message="Unable to load products. Please try again later." />

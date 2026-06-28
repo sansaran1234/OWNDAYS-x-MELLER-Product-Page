@@ -26,7 +26,7 @@ export function Footer() {
             </nav>
 
             <Link
-              href="https://www.instagram.com/owndays/"
+              href="/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-12 inline-block md:mt-[58px]"
