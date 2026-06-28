@@ -14,14 +14,27 @@ function getColorLabel(color: ApiColor): string {
   return jaLocalization?.name ?? color.name;
 }
 
-function mapSkuToSwatch(sku: ApiSku): ProductSwatch {
+function getSkuImageSrc(sku: ApiSku): string {
+  const firstImage = [...sku.images].sort((a, b) => a.order - b.order)[0];
+
+  if (!firstImage) {
+    throw new Error(`SKU ${sku.code} is missing product images.`);
+  }
+
+  return buildAssetUrl(firstImage.path);
+}
+
+function mapSkuToSwatch(sku: ApiSku, productCode: string): ProductSwatch {
   const color = sku.colors[0];
   const alt = color ? getColorLabel(color) : sku.code;
+  const imageSrc = getSkuImageSrc(sku);
 
   if (color?.path) {
     return {
       alt,
       src: buildAssetUrl(color.path),
+      imageSrc,
+      sku: `${productCode} ${sku.code}`,
     };
   }
 
@@ -29,15 +42,16 @@ function mapSkuToSwatch(sku: ApiSku): ProductSwatch {
     return {
       alt,
       hexColor: color.hex_code,
+      imageSrc,
+      sku: `${productCode} ${sku.code}`,
     };
   }
 
-  const firstImage = [...sku.images].sort((a, b) => a.order - b.order)[0];
-
   return {
     alt,
-    src: firstImage ? buildAssetUrl(firstImage.path) : undefined,
     hexColor: "#cccccc",
+    imageSrc,
+    sku: `${productCode} ${sku.code}`,
   };
 }
 
@@ -49,29 +63,21 @@ function getDefaultSku(item: ApiProductItem): ApiSku {
   );
 }
 
-function getPrimaryImageSrc(sku: ApiSku): string {
-  const firstImage = [...sku.images].sort((a, b) => a.order - b.order)[0];
-
-  if (!firstImage) {
-    throw new Error(`SKU ${sku.code} is missing product images.`);
-  }
-
-  return buildAssetUrl(firstImage.path);
-}
-
 export function mapProductItemToProduct(item: ApiProductItem): Product {
   const defaultSku = getDefaultSku(item);
   const { product, selling_setting: sellingSetting } = item;
+  const swatches = [...item.skus]
+    .sort((a, b) => a.order - b.order)
+    .map((sku) => mapSkuToSwatch(sku, product.code));
 
   return {
     id: String(product.id),
     name: product.model_name,
+    code: product.code,
     sku: `${product.code} ${defaultSku.code}`,
     price: sellingSetting.price,
-    imageSrc: getPrimaryImageSrc(defaultSku),
-    swatches: [...item.skus]
-      .sort((a, b) => a.order - b.order)
-      .map(mapSkuToSwatch),
+    imageSrc: getSkuImageSrc(defaultSku),
+    swatches,
   };
 }
 

@@ -4,11 +4,20 @@ import type { ProductSwatch } from "@/types/product";
 type ColorSwatchProps = {
   swatch: ProductSwatch;
   selected?: boolean;
+  onSelect?: () => void;
 };
 
-export function ColorSwatch({ swatch, selected = false }: ColorSwatchProps) {
+export function ColorSwatch({
+  swatch,
+  selected = false,
+  onSelect,
+}: ColorSwatchProps) {
   return (
-    <span
+    <button
+      type="button"
+      aria-label={swatch.alt}
+      aria-pressed={selected}
+      onClick={onSelect}
       className={`relative flex size-[38px] shrink-0 cursor-pointer items-center justify-center rounded-full hover:ring-1 hover:ring-[#ff6723] ${
         selected ? "ring-1 ring-[#ff6723]" : ""
       }`}
@@ -30,6 +39,6 @@ export function ColorSwatch({ swatch, selected = false }: ColorSwatchProps) {
           />
         )}
       </span>
-    </span>
+    </button>
   );
 }
