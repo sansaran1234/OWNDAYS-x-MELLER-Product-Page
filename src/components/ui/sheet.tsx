@@ -77,8 +77,9 @@ const sideVariants = {
 } as const;
 
 const sideClassNames = {
-  right: "inset-y-0 right-0 max-w-[616px] rounded-tl-[30px] rounded-bl-[30px]",
-  left: "inset-y-0 left-0 max-w-[616px] rounded-tr-[30px] rounded-br-[30px]",
+  right:
+    "inset-y-0 right-0 w-[616px] max-w-full rounded-tl-[30px] rounded-bl-[30px]",
+  left: "inset-y-0 left-0 w-[616px] max-w-full rounded-tr-[30px] rounded-br-[30px]",
   top: "inset-x-0 top-0 h-auto max-w-none rounded-none",
   bottom: "inset-x-0 bottom-0 h-auto max-w-none rounded-none",
 } as const;
@@ -119,7 +120,7 @@ function SheetContent({
             <SheetPrimitive.Content
               data-slot="sheet-content"
               className={cn(
-                "fixed z-50 flex h-full w-full flex-col overflow-hidden bg-transparent shadow-none focus:outline-none",
+                "fixed z-50 flex h-full flex-col overflow-hidden bg-transparent shadow-none focus:outline-none",
                 sideClassNames[side],
                 className,
               )}
@@ -151,7 +152,7 @@ function SheetContent({
             <motion.div
               data-slot="sheet-content"
               className={cn(
-                "fixed z-50 flex h-full w-full flex-col overflow-hidden bg-transparent focus:outline-none",
+                "fixed z-50 flex h-full flex-col overflow-hidden bg-transparent focus:outline-none",
                 sideClassNames[side],
                 className,
               )}

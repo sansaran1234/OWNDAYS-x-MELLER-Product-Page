@@ -56,7 +56,7 @@ export function ProductDetailSheet({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="overflow-y-auto border-0 p-0">
+      <SheetContent side="right" className="scrollbar-sheet overflow-y-auto border-0 p-0">
         <SheetTitle>{product.name} product details</SheetTitle>
         <SheetDescription>
           View specifications, color options, and pricing for {product.name}.
