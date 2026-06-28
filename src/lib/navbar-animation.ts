@@ -2,19 +2,28 @@ import type { Variants } from "framer-motion";
 
 export const revealEase = [0.22, 1, 0.36, 1] as const;
 
+export const navbarAnimationDelay = 0.5;
+
 export const headerVariants: Variants = {
   hidden: { y: -32, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.68, ease: revealEase },
+    transition: {
+      duration: 0.68,
+      ease: revealEase,
+      delay: navbarAnimationDelay,
+    },
   },
 };
 
 export const rowVariants: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.18 },
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: navbarAnimationDelay + 0.18,
+    },
   },
 };
 

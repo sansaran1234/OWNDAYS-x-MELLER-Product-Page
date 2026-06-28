@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 import { DisplayMessage } from "@/components/ui/display-message";
+import { heroCurtainVariants, heroImageVariants } from "@/lib/hero-animation";
 
 export function ProductsHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -26,33 +27,53 @@ export function ProductsHero() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-[#ff6723]">
       <div className="relative mx-auto h-[420px] w-full md:h-[633px]">
-        <motion.div
-          className="absolute inset-0 origin-center"
-          style={
-            shouldReduceMotion
-              ? undefined
-              : {
-                  y: imageY,
-                  scale: imageScale,
-                }
-          }
-        >
-          <Image
-            src="/images/figma/hero.webp"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-        </motion.div>
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute inset-0 origin-center"
+            style={
+              shouldReduceMotion
+                ? undefined
+                : {
+                    y: imageY,
+                    scale: imageScale,
+                  }
+            }
+          >
+            <motion.div
+              className="absolute inset-0"
+              initial={shouldReduceMotion ? false : "hidden"}
+              animate={shouldReduceMotion ? undefined : "visible"}
+              variants={heroImageVariants}
+            >
+              <Image
+                src="/images/figma/hero.webp"
+                alt=""
+                fill
+                className="object-cover"
+                priority
+                sizes="100vw"
+              />
+            </motion.div>
+          </motion.div>
+
+          {!shouldReduceMotion && (
+            <motion.div
+              className="pointer-events-none absolute inset-0 z-10 bg-[#ff6723]"
+              initial="hidden"
+              animate="visible"
+              variants={heroCurtainVariants}
+              aria-hidden
+            />
+          )}
+        </div>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 top-[260px] z-10 flex justify-center px-5">
+
+      <div className="pointer-events-none absolute inset-x-0 top-[260px] z-20 flex justify-center px-5">
         <motion.div
           className="w-full max-w-[420px]"
           style={shouldReduceMotion ? undefined : { y: titleY }}
         >
-          <DisplayMessage message="PRODUCTS" as="h1" reveal />
+          <DisplayMessage message="PRODUCTS" as="h1" reveal revealDelay={0.5} />
         </motion.div>
       </div>
     </section>
