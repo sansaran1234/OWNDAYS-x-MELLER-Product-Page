@@ -7,51 +7,64 @@ function buildAssetUrl(path: string): string {
 }
 
 function getColorLabel(color: ApiColor): string {
+  const enLocalization = color.localizations.find(
+    (localization) => localization.language_code === "en",
+  );
   const jaLocalization = color.localizations.find(
     (localization) => localization.language_code === "ja",
   );
 
-  return jaLocalization?.name ?? color.name;
+  return enLocalization?.name ?? jaLocalization?.name ?? color.name;
+}
+
+function getSkuImageSrcs(sku: ApiSku): string[] {
+  return [...sku.images]
+    .sort((a, b) => a.order - b.order)
+    .map((image) => buildAssetUrl(image.path));
 }
 
 function getSkuImageSrc(sku: ApiSku): string {
-  const firstImage = [...sku.images].sort((a, b) => a.order - b.order)[0];
+  const images = getSkuImageSrcs(sku);
 
-  if (!firstImage) {
+  if (!images[0]) {
     throw new Error(`SKU ${sku.code} is missing product images.`);
   }
 
-  return buildAssetUrl(firstImage.path);
+  return images[0];
 }
 
 function mapSkuToSwatch(sku: ApiSku, productCode: string): ProductSwatch {
   const color = sku.colors[0];
   const alt = color ? getColorLabel(color) : sku.code;
   const imageSrc = getSkuImageSrc(sku);
+  const images = getSkuImageSrcs(sku);
+
+  const baseSwatch = {
+    alt,
+    label: alt.toUpperCase(),
+    imageSrc,
+    images,
+    sku: `${productCode} ${sku.code}`,
+    skuCode: sku.code,
+  };
 
   if (color?.path) {
     return {
-      alt,
+      ...baseSwatch,
       src: buildAssetUrl(color.path),
-      imageSrc,
-      sku: `${productCode} ${sku.code}`,
     };
   }
 
   if (color?.hex_code) {
     return {
-      alt,
+      ...baseSwatch,
       hexColor: color.hex_code,
-      imageSrc,
-      sku: `${productCode} ${sku.code}`,
     };
   }
 
   return {
-    alt,
+    ...baseSwatch,
     hexColor: "#cccccc",
-    imageSrc,
-    sku: `${productCode} ${sku.code}`,
   };
 }
 
@@ -63,9 +76,15 @@ function getDefaultSku(item: ApiProductItem): ApiSku {
   );
 }
 
+function getFrameType(item: ApiProductItem): string {
+  const frameCode = item.frame_types[0]?.code;
+
+  return frameCode ? frameCode.toUpperCase() : item.product_type.name.toUpperCase();
+}
+
 export function mapProductItemToProduct(item: ApiProductItem): Product {
   const defaultSku = getDefaultSku(item);
-  const { product, selling_setting: sellingSetting } = item;
+  const { product, selling_setting: sellingSetting, localization } = item;
   const swatches = [...item.skus]
     .sort((a, b) => a.order - b.order)
     .map((sku) => mapSkuToSwatch(sku, product.code));
@@ -77,6 +96,8 @@ export function mapProductItemToProduct(item: ApiProductItem): Product {
     sku: `${product.code} ${defaultSku.code}`,
     price: sellingSetting.price,
     imageSrc: getSkuImageSrc(defaultSku),
+    description: localization.description,
+    frameType: getFrameType(item),
     swatches,
   };
 }
