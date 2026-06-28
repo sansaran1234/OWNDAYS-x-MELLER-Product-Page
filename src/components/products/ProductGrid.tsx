@@ -44,12 +44,6 @@ export function ProductGrid() {
           <NotFoundData message="Unable to load products. Please try again later." />
         )}
       </div>
-
-      <div className="flex justify-center px-5 pb-20 lg:pb-28">
-        <Button variant="allItems" size="allItems" type="button">
-          ALL ITEMS
-        </Button>
-      </div>
     </section>
   );
 }

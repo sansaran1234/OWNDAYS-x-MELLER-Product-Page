@@ -49,10 +49,10 @@ export function Navbar() {
     };
   }, []);
 
-  const innerClassName = `mx-auto flex max-w-[1300px] items-center justify-between px-5 duration-300 md:px-0 ${
+  const innerClassName = `mx-auto flex max-w-[1300px] items-center justify-between px-5 duration-300 xl:px-2 ${
     isOverProductGrid
-      ? "py-4 duration-300 md:py-[10px]"
-      : "py-6 duration-300 md:py-[25px]"
+      ? "py-4 max-[768px]:py-2 duration-300 md:py-[10px]"
+      : "py-6 max-[768px]:py-4 duration-300 md:py-[25px]"
   }`;
 
   const headerClassName = `fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300 ${

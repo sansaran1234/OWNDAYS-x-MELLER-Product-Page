@@ -168,7 +168,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         >
           {imageArea}
           <motion.div
-            className="flex items-end justify-between gap-4 px-[18px] pt-5 pb-[38px]"
+            className="flex items-end justify-between gap-4 p-4 max-[1300px]:flex-col max-[1300px]:items-start max-[768px]:flex-row max-[768px]:items-end max-[426px]:flex-col max-[426px]:items-start"
             variants={productCardContentVariants}
           >
             <motion.div
@@ -193,7 +193,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </motion.div>
 
             <motion.div
-              className="flex shrink-0 flex-col items-end gap-4"
+              className="flex shrink-0 flex-col items-end gap-4 max-[1300px]:items-start max-[768px]:items-end max-[426px]:items-start"
               variants={productCardContentItemVariants}
             >
               <div
