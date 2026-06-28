@@ -14,10 +14,42 @@ import {
   navVariants,
   rowVariants,
 } from "@/lib/navbar-animation";
+import { MobileNavMenu } from "./MobileNavMenu";
+
+function MobileMenuButton({
+  onOpen,
+  isOpen = false,
+  className,
+}: {
+  onOpen: () => void;
+  isOpen?: boolean;
+  className?: string;
+}) {
+  return (
+    <Button
+      type="button"
+      variant="ghost"
+      size="menu"
+      className={className}
+      aria-label="Open menu"
+      aria-expanded={isOpen}
+      aria-controls="mobile-nav-menu"
+      onClick={onOpen}
+    >
+      <Image
+        src="/images/common/hamburger.svg"
+        alt=""
+        fill
+        className="object-contain"
+      />
+    </Button>
+  );
+}
 
 export function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const [isOverProductGrid, setIsOverProductGrid] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -61,126 +93,122 @@ export function Navbar() {
 
   if (shouldReduceMotion) {
     return (
-      <header ref={headerRef} className={headerClassName}>
-        <div className={innerClassName}>
-          <Link
-            href="/"
-            className="relative block h-[52px] w-[220px] md:w-[351px]"
-          >
-            <Image
-              src="/images/common/logo-header.svg"
-              alt="OWNDAYS × MELLER"
-              fill
-              className="object-contain object-left"
-              priority
-            />
-          </Link>
+      <>
+        <header ref={headerRef} className={headerClassName}>
+          <div className={innerClassName}>
+            <Link
+              href="/"
+              className="relative block h-[52px] w-[220px] md:w-[351px]"
+            >
+              <Image
+                src="/images/common/logo-header.svg"
+                alt="OWNDAYS × MELLER"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </Link>
 
-          <nav
-            className="hidden items-center gap-[50px] md:flex"
-            aria-label="Main"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href ?? "#"}
-                className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
-                  link.active ? "font-bold" : "font-medium"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+            <nav
+              className="hidden items-center gap-[50px] md:flex"
+              aria-label="Main"
+            >
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href ?? "#"}
+                  className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
+                    link.active ? "font-bold" : "font-medium"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-          <Button
-            type="button"
-            variant="ghost"
-            size="menu"
-            className="relative md:hidden"
-            aria-label="Open menu"
-          >
-            <Image
-              src="/images/common/hamburger.svg"
-              alt=""
-              fill
-              className="object-contain"
+            <MobileMenuButton
+              isOpen={isMobileMenuOpen}
+              onOpen={() => setIsMobileMenuOpen(true)}
+              className="relative md:hidden"
             />
-          </Button>
-        </div>
-      </header>
+          </div>
+        </header>
+
+        <MobileNavMenu
+          open={isMobileMenuOpen}
+          onOpenChange={setIsMobileMenuOpen}
+        />
+      </>
     );
   }
 
   return (
-    <motion.header
-      ref={headerRef}
-      className={headerClassName}
-      initial="hidden"
-      animate="visible"
-      variants={headerVariants}
-    >
-      <motion.div
-        className={innerClassName}
-        variants={rowVariants}
+    <>
+      <motion.header
+        ref={headerRef}
+        className={headerClassName}
         initial="hidden"
         animate="visible"
+        variants={headerVariants}
       >
-        <motion.div variants={logoVariants}>
-          <Link
-            href="/"
-            className="relative block h-[52px] w-[220px] md:w-[351px]"
-          >
-            <Image
-              src="/images/common/logo-header.svg"
-              alt="OWNDAYS × MELLER"
-              fill
-              className="object-contain object-left"
-              priority
-            />
-          </Link>
-        </motion.div>
-
-        <motion.nav
-          className="hidden items-center gap-[50px] md:flex"
-          aria-label="Main"
-          variants={navVariants}
+        <motion.div
+          className={innerClassName}
+          variants={rowVariants}
+          initial="hidden"
+          animate="visible"
         >
-          {navLinks.map((link) => (
-            <motion.span
-              key={link.label}
-              variants={linkVariants}
-              className="inline-block"
+          <motion.div variants={logoVariants}>
+            <Link
+              href="/"
+              className="relative block h-[52px] w-[220px] md:w-[351px]"
             >
-              <Link
-                href={link.href ?? "#"}
-                className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
-                  link.active ? "font-bold" : "font-medium"
-                }`}
-              >
-                {link.label}
-              </Link>
-            </motion.span>
-          ))}
-        </motion.nav>
+              <Image
+                src="/images/common/logo-header.svg"
+                alt="OWNDAYS × MELLER"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </Link>
+          </motion.div>
 
-        <motion.div variants={menuVariants} className="md:hidden">
-          <Button
-            type="button"
-            variant="ghost"
-            size="menu"
-            className="relative"
-            aria-label="Open menu"
+          <motion.nav
+            className="hidden items-center gap-[50px] md:flex"
+            aria-label="Main"
+            variants={navVariants}
           >
-            <Image
-              src="/images/common/hamburger.svg"
-              alt=""
-              fill
-              className="object-contain"
+            {navLinks.map((link) => (
+              <motion.span
+                key={link.label}
+                variants={linkVariants}
+                className="inline-block"
+              >
+                <Link
+                  href={link.href ?? "#"}
+                  className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
+                    link.active ? "font-bold" : "font-medium"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </motion.span>
+            ))}
+          </motion.nav>
+
+          <motion.div variants={menuVariants} className="md:hidden">
+            <MobileMenuButton
+              isOpen={isMobileMenuOpen}
+              onOpen={() => setIsMobileMenuOpen(true)}
+              className="relative"
             />
-          </Button>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </motion.header>
+      </motion.header>
+
+      <MobileNavMenu
+        open={isMobileMenuOpen}
+        onOpenChange={setIsMobileMenuOpen}
+      />
+    </>
   );
 }

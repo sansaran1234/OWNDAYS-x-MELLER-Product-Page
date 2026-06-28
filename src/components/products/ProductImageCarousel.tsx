@@ -84,7 +84,7 @@ export function ProductImageCarousel({
                 src={imageSrc}
                 alt={`${alt} ${index + 1}`}
                 fill
-                className="object-cover mix-blend-multiply"
+                className="object-cover mix-blend-multiply max-[577px]:object-contain"
                 sizes="616px"
                 priority={index === 0}
               />
@@ -118,7 +118,7 @@ export function ProductImageCarousel({
 
       {showPagination ? (
         <div
-          className="pointer-events-auto absolute inset-x-0 bottom-[76px] z-10 flex items-center justify-center gap-[6px]"
+          className="pointer-events-auto absolute inset-x-0 bottom-[76px] z-10 flex items-center justify-center gap-[6px] max-[577px]:bottom-[55px]"
           role="tablist"
           aria-label={`${alt} image pagination`}
         >

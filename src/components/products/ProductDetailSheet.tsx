@@ -56,7 +56,10 @@ export function ProductDetailSheet({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="scrollbar-sheet overflow-y-auto border-0 p-0">
+      <SheetContent
+        side="right"
+        className="scrollbar-sheet overflow-y-auto rounded-none border-0 p-0 md:rounded-tl-[30px] md:rounded-bl-[30px]"
+      >
         <SheetTitle>{product.name} product details</SheetTitle>
         <SheetDescription>
           View specifications, color options, and pricing for {product.name}.
@@ -73,7 +76,7 @@ export function ProductDetailSheet({
         >
           <DetailSection
             {...detailSectionProps}
-            className="relative min-h-[499px] shrink-0 overflow-hidden rounded-tl-[20px] bg-[#f0f0f0]"
+            className="relative min-h-[499px] shrink-0 overflow-hidden rounded-none bg-[#f0f0f0] md:rounded-tl-[20px]"
           >
             <ProductImageCarousel
               className="absolute inset-0 z-0"
@@ -92,13 +95,14 @@ export function ProductDetailSheet({
               </SheetClose>
             </div>
 
-            <div className="absolute inset-x-0 bottom-8 z-10 flex flex-wrap items-center justify-center gap-[7px] px-6">
+            <div className="absolute inset-x-0 bottom-8 z-10 flex flex-wrap items-center justify-center gap-[7px] px-6 max-[577px]:bottom-0 max-[577px]:[touch-action:pan-x] max-[577px]:snap-x max-[577px]:snap-mandatory max-[577px]:[scrollbar-width:none] max-[577px]:flex-nowrap max-[577px]:overflow-x-auto max-[577px]:bg-white max-[577px]:!p-2 max-[577px]:px-4 max-[577px]:pb-4 max-[577px]:[-ms-overflow-style:none] max-[577px]:[&::-webkit-scrollbar]:hidden">
               {product.swatches.map((swatch, index) => (
                 <ColorPill
                   key={`${swatch.skuCode}-${index}`}
                   label={swatch.label}
                   selected={index === selectedIndex}
                   onSelect={() => setSelectedIndex(index)}
+                  className="max-[577px]:snap-start"
                 />
               ))}
             </div>
