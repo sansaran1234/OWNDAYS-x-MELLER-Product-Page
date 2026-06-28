@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import type { Product } from "@/data/products";
+import type { Product } from "@/types/product";
 import { ColorSwatch } from "./ColorSwatch";
 
 type ProductCardProps = {
@@ -9,13 +8,8 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="border-3 border-transparent bg-white transition-all duration-300 hover:border-[#000000]">
-      <Link
-        href={product.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-      >
+    <article className="cursor-pointer border-3 border-transparent bg-white transition-all duration-300 hover:border-[#000000]">
+      <div className="block">
         <div className="relative aspect-[472/359] bg-[#f7f7f7]">
           <Image
             src={product.imageSrc}
@@ -35,10 +29,10 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           <div className="flex shrink-0 flex-col items-end gap-4">
-            <div className="flex items-center gap-[3px]">
+            <div className="flex items-center gap-[5px]">
               {product.swatches.map((swatch, index) => (
                 <ColorSwatch
-                  key={swatch.src}
+                  key={`${swatch.alt}-${index}`}
                   swatch={swatch}
                   selected={index === 0}
                 />
@@ -52,7 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </p>
           </div>
         </div>
-      </Link>
+      </div>
     </article>
   );
 }

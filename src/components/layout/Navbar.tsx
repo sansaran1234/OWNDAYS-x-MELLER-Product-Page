@@ -83,9 +83,9 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                href={link.href}
+                href={link.href ?? "#"}
                 className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
-                  "active" in link && link.active ? "font-bold" : "font-medium"
+                  link.active ? "font-bold" : "font-medium"
                 }`}
               >
                 {link.label}
@@ -153,9 +153,9 @@ export function Navbar() {
               className="inline-block"
             >
               <Link
-                href={link.href}
+                href={link.href ?? "#"}
                 className={`text-[15px] tracking-[0.7px] text-white uppercase transition-opacity hover:opacity-70 ${
-                  "active" in link && link.active ? "font-bold" : "font-medium"
+                  link.active ? "font-bold" : "font-medium"
                 }`}
               >
                 {link.label}

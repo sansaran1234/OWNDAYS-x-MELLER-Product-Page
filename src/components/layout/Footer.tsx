@@ -1,11 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  footerLegalLinks,
-  footerNavLinks,
-  onlineStoreHref,
-  owndaysHref,
-} from "@/data/products";
+import { footerLegalLinks, footerNavLinks } from "@/data/products";
 
 export function Footer() {
   return (
@@ -22,7 +17,7 @@ export function Footer() {
               {footerNavLinks.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={link.href ?? "#"}
                   className="hover:opacity-70"
                 >
                   {link.label}
@@ -49,12 +44,7 @@ export function Footer() {
           </div>
 
           <div className="flex min-h-[200px] flex-col items-center justify-center border-t border-[#ff6723] px-5 py-12 md:min-h-[320px] md:border-t-0 md:border-l md:py-0">
-            <Link
-              href={onlineStoreHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 hover:opacity-70"
-            >
+            <div className="inline-flex items-center gap-3">
               <span className="relative block size-8 shrink-0">
                 <Image
                   src="/images/figma/icons/cart.svg"
@@ -66,14 +56,9 @@ export function Footer() {
               <span className="text-[21px] font-medium tracking-[0.7px] uppercase">
                 ONLINE STORE
               </span>
-            </Link>
+            </div>
 
-            <Link
-              href={owndaysHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-medium tracking-[0.7px] uppercase hover:opacity-70"
-            >
+            <div className="mt-7 inline-flex items-center gap-2 text-sm font-medium tracking-[0.7px] uppercase">
               OWNDAYS.COM
               <span className="relative block size-4">
                 <Image
@@ -83,7 +68,7 @@ export function Footer() {
                   className="object-contain"
                 />
               </span>
-            </Link>
+            </div>
           </div>
         </div>
 
@@ -91,13 +76,12 @@ export function Footer() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <nav className="flex flex-wrap gap-x-10 gap-y-2 text-[13px] tracking-[0.7px] uppercase">
               {footerLegalLinks.map((link, index) => (
-                <Link
+                <span
                   key={link.label}
-                  href={link.href}
-                  className={`hover:opacity-70 ${index === 0 ? "font-medium" : "font-bold"}`}
+                  className={index === 0 ? "font-medium" : "font-bold"}
                 >
                   {link.label}
-                </Link>
+                </span>
               ))}
             </nav>
 

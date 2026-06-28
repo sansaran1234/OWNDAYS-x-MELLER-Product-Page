@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ProductSwatch } from "@/data/products";
+import type { ProductSwatch } from "@/types/product";
 
 type ColorSwatchProps = {
   swatch: ProductSwatch;
@@ -9,18 +9,26 @@ type ColorSwatchProps = {
 export function ColorSwatch({ swatch, selected = false }: ColorSwatchProps) {
   return (
     <span
-      className={`relative flex size-[38px] shrink-0 items-center justify-center rounded-full ${
-        selected ? "ring-1 ring-[#ff6723]" : "ring-1 ring-[#999999]"
+      className={`relative flex size-[38px] shrink-0 cursor-pointer items-center justify-center rounded-full hover:ring-1 hover:ring-[#ff6723] ${
+        selected ? "ring-1 ring-[#ff6723]" : ""
       }`}
     >
       <span className="relative size-[28px] overflow-hidden rounded-full">
-        <Image
-          src={swatch.src}
-          alt={swatch.alt}
-          fill
-          className="object-cover"
-          sizes="28px"
-        />
+        {swatch.src ? (
+          <Image
+            src={swatch.src}
+            alt={swatch.alt}
+            fill
+            className="object-cover"
+            sizes="28px"
+          />
+        ) : (
+          <span
+            className="block size-full"
+            style={{ backgroundColor: swatch.hexColor ?? "#cccccc" }}
+            aria-hidden
+          />
+        )}
       </span>
     </span>
   );
