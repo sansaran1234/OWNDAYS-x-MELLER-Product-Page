@@ -16,7 +16,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import type { Product } from "@/types/product";
-import { ColorPill } from "./ColorPill";
+import { ColorPillSelector } from "./ColorPillSelector";
 import { ProductDetailSpecs } from "./ProductDetailSpecs";
 import { ProductImageCarousel } from "./ProductImageCarousel";
 
@@ -95,22 +95,16 @@ export function ProductDetailSheet({
               </SheetClose>
             </div>
 
-            <div className="absolute inset-x-0 bottom-8 z-10 flex flex-wrap items-center justify-center gap-[7px] px-6 max-[577px]:bottom-0 max-[577px]:[touch-action:pan-x] max-[577px]:snap-x max-[577px]:snap-mandatory max-[577px]:[scrollbar-width:none] max-[577px]:flex-nowrap max-[577px]:overflow-x-auto max-[577px]:bg-white max-[577px]:!p-2 max-[577px]:px-4 max-[577px]:pb-4 max-[577px]:[-ms-overflow-style:none] max-[577px]:[&::-webkit-scrollbar]:hidden">
-              {product.swatches.map((swatch, index) => (
-                <ColorPill
-                  key={`${swatch.skuCode}-${index}`}
-                  label={swatch.label}
-                  selected={index === selectedIndex}
-                  onSelect={() => setSelectedIndex(index)}
-                  className="max-[577px]:snap-start"
-                />
-              ))}
-            </div>
+            <ColorPillSelector
+              swatches={product.swatches}
+              selectedIndex={selectedIndex}
+              onSelect={setSelectedIndex}
+            />
           </DetailSection>
 
           <DetailSection
             {...detailSectionProps}
-            className="flex flex-1 flex-col bg-black px-[61px] py-[30px] text-white"
+            className="flex flex-1 flex-col bg-black px-[61px] py-[30px] text-white max-[576px]:px-4"
           >
             <ProductDetailSpecs
               partNumber={selectedSwatch.sku}
