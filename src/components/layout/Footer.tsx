@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerLegalLinks, footerNavLinks } from "@/data/products";
-
+import { ChevronRight } from "lucide-react";
 export function Footer() {
   return (
     <footer className="bg-black text-[#ff6723]">
@@ -18,9 +18,10 @@ export function Footer() {
                 <Link
                   key={link.label}
                   href={link.href ?? "#"}
-                  className="border-b-[#ff6723] last:border-b-0 hover:opacity-70 max-[768px]:border-b max-[768px]:px-4 max-[768px]:py-4"
+                  className="border-b-[#ff6723] last:border-b-0 hover:opacity-70 max-[768px]:flex max-[768px]:items-center max-[768px]:justify-between max-[768px]:border-b max-[768px]:px-4 max-[768px]:py-4"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <ChevronRight className="min-[768px]:hidden" />
                 </Link>
               ))}
             </nav>
