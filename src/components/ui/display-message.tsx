@@ -17,14 +17,14 @@ type DisplayMessageProps = {
 
 const sizeStyles = {
   hero: {
-    container: "w-full max-w-[420px]",
+    container: "w-full max-w-[420px] max-[768px]:w-fit",
     bar: "top-2 left-[5px] h-[78px] w-[415px] max-w-[calc(100%-5px)]",
     text: "text-[64px] md:text-[110px] md:leading-[110px]",
   },
   section: {
     container: "w-auto max-w-none",
-    bar: "top-3 left-[6px] h-[80px] md:h-[114px]",
-    text: "text-[56px] md:text-[160px] md:leading-[160px]",
+    bar: "top-3 left-[6px] h-[80px] md:h-[114px] ",
+    text: "text-[56px] max-[768px]:text-[106px] md:text-[160px] md:leading-[160px]",
   },
 } as const;
 

@@ -66,15 +66,20 @@ export function ProductsHero() {
             />
           )}
         </div>
-      </div>
 
-      <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-5">
-        <motion.div
-          className="w-full max-w-[420px]"
-          style={shouldReduceMotion ? undefined : { y: titleY }}
-        >
-          <DisplayMessage message="PRODUCTS" as="h1" reveal revealDelay={0.5} />
-        </motion.div>
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-5">
+          <motion.div
+            className="flex w-full max-w-[420px] justify-center"
+            style={shouldReduceMotion ? undefined : { y: titleY }}
+          >
+            <DisplayMessage
+              message="PRODUCTS"
+              as="h1"
+              reveal
+              revealDelay={0.5}
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

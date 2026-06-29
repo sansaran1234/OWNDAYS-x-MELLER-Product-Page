@@ -43,21 +43,22 @@ export function MarqueeSection() {
             as="h2"
             size="section"
             align="left"
-            barClassName="w-[280px] md:w-[422px]"
+            barClassName="w-[min(280px,calc(100%-12px))] lg:w-[422px] max-[991px]:w-[425px]"
             reveal
           />
+
           <DisplayMessage
             message="STYLE THEM"
             as="h2"
             size="section"
             align="left"
-            barClassName="w-[320px] md:w-[665px]"
+            barClassName="w-[min(340px,calc(100%-12px))] lg:w-[665px] max-[991px]:w-[656px]"
             reveal
             revealDelay={0.12}
           />
         </div>
 
-        <div className="-mt-12 md:-mt-16 lg:-mt-20">
+        <div className="-mt-10 lg:-mt-16 xl:-mt-20">
           <Marquee pauseOnHover={false} repeat={2} className="[--duration:60s]">
             {marqueeGallery.map((item) => (
               <MarqueeGalleryItem key={item.id} src={item.src} alt={item.alt} />
