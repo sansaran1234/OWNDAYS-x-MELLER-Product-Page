@@ -43,7 +43,7 @@ export function MarqueeSection() {
             as="h2"
             size="section"
             align="left"
-            barClassName="max-[577px]:!top-[1.4rem] max-[577px]:h-[3rem] max-[577px]:!w-[183px] max-md:top-[34px] max-md:left-[5px] max-md:h-[4.7rem] max-md:w-[282px] lg:w-[422px] max-[992px]:!w-[420px] max-[768px]:!w-[280px]"
+            barClassName="max-[577px]:!top-[1.4rem] max-[577px]:!h-[3rem] max-[577px]:!w-[183px] max-md:top-[34px] max-md:left-[5px] max-md:h-[4.7rem] max-md:w-[282px] lg:w-[422px] max-[992px]:!w-[420px] max-[768px]:!w-[280px]"
             reveal
           />
 
@@ -52,7 +52,7 @@ export function MarqueeSection() {
             as="h2"
             size="section"
             align="left"
-            barClassName="max-[577px]:!top-[1.4rem] max-[577px]:!h-[3.1rem] max-[577px]:!w-[284px] w-[654px] max-[992px]!:w-[656px] max-[768px]:!w-[431px] max-[768px]:!h-[4.7rem] max-[768px]:!top-[34px]"
+            barClassName="max-[577px]:!top-[1.4rem] max-[577px]:!h-[3rem] max-[577px]:!w-[284px] w-[654px] max-[992px]!:w-[656px] max-[768px]:!w-[431px] max-[768px]:h-[4.7rem] max-[768px]:!top-[34px]"
             reveal
             revealDelay={0.12}
           />
