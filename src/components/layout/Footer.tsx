@@ -7,7 +7,6 @@ export function Footer() {
     <footer className="bg-black text-[#ff6723]">
       <div className="mx-auto">
         <div className="h-px bg-[#ff6723]" aria-hidden />
-
         <div className="grid md:grid-cols-[65fr_35fr]">
           <div className="px-5 pt-12 pb-10 max-[768px]:p-0 md:px-[70px] md:pt-[69px] md:pb-16">
             <nav

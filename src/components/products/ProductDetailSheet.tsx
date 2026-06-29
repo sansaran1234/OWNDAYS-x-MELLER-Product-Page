@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   sheetDetailItemVariants,
@@ -34,6 +34,16 @@ export function ProductDetailSheet({
   initialSwatchIndex = 0,
 }: ProductDetailSheetProps) {
   const [selectedIndex, setSelectedIndex] = useState(initialSwatchIndex);
+  const [prevOpen, setPrevOpen] = useState(open);
+
+  if (open !== prevOpen) {
+    setPrevOpen(open);
+
+    if (open) {
+      setSelectedIndex(initialSwatchIndex);
+    }
+  }
+
   const shouldReduceMotion = useReducedMotion();
   const selectedSwatch = product.swatches[selectedIndex] ?? product.swatches[0];
   const ContentWrapper = shouldReduceMotion ? "div" : motion.div;
@@ -43,12 +53,6 @@ export function ProductDetailSheet({
     : {
         variants: sheetDetailItemVariants,
       };
-
-  useEffect(() => {
-    if (open) {
-      setSelectedIndex(initialSwatchIndex);
-    }
-  }, [open, initialSwatchIndex]);
 
   if (!selectedSwatch) {
     return null;

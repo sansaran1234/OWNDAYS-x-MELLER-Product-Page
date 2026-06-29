@@ -25,7 +25,11 @@ export function ColorPillSelector({
 }: ColorPillSelectorProps) {
   const shouldReduceMotion = useReducedMotion();
   const [api, setApi] = useState<CarouselApi>();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 576px)").matches,
+  );
   const selectedIndexRef = useRef(selectedIndex);
   const isProgrammaticScrollRef = useRef(false);
 
@@ -36,11 +40,10 @@ export function ColorPillSelector({
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 576px)");
 
-    const updateIsMobile = () => {
-      setIsMobile(mediaQuery.matches);
+    const updateIsMobile = (event?: MediaQueryListEvent) => {
+      setIsMobile(event?.matches ?? mediaQuery.matches);
     };
 
-    updateIsMobile();
     mediaQuery.addEventListener("change", updateIsMobile);
 
     return () => {
