@@ -24,7 +24,7 @@ const sizeStyles = {
   section: {
     container: "w-auto max-w-none",
     bar: "top-3 left-[6px] h-[80px] md:h-[114px] ",
-    text: "text-[56px] max-[768px]:text-[106px] md:text-[160px] md:leading-[160px]",
+    text: "text-[56px] max-[768px]:text-[106px] md:text-[160px] md:leading-[160px] max-[577px]:!text-[70px]",
   },
 } as const;
 
