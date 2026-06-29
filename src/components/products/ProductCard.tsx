@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useState, type KeyboardEvent } from "react";
+import { useState } from "react";
 import {
   productCardContentItemVariants,
   productCardContentVariants,
@@ -23,25 +23,22 @@ type ProductCardProps = {
   index?: number;
 };
 
+const imageOpenButtonClassName =
+  "block w-full cursor-pointer border-0 bg-transparent p-0 text-left";
+
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const selectedSwatch = product.swatches[selectedIndex] ?? product.swatches[0];
+  const openDetailLabel = `View ${product.name} details`;
 
   if (!selectedSwatch) {
     return null;
   }
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      setIsDetailOpen(true);
-    }
-  };
-
   const cardClassName =
-    "cursor-pointer border-3 border-transparent bg-white transition-all duration-300 hover:border-[#000000] bg-[#f7f7f7]";
+    "border-3 border-transparent bg-white transition-all duration-300 hover:border-[#000000] bg-[#f7f7f7]";
 
   const imageArea = shouldReduceMotion ? (
     <div className="relative aspect-[472/359] overflow-hidden bg-[#f7f7f7]">
@@ -54,10 +51,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       />
     </div>
   ) : (
-    <motion.div
-      className="relative aspect-[472/359] overflow-hidden bg-[#f7f7f7]"
-      variants={productCardImageZoneVariants}
-    >
+    <div className="relative aspect-[472/359] overflow-hidden bg-[#f7f7f7]">
       <motion.div
         aria-hidden
         className="absolute inset-0 z-10 bg-[#ff6723]"
@@ -86,7 +80,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </motion.div>
         </AnimatePresence>
       </motion.div>
-    </motion.div>
+    </div>
   );
 
   const metaArea = (
@@ -116,11 +110,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       </div>
 
       <div className="flex shrink-0 flex-col items-end gap-4">
-        <div
-          className="flex items-center gap-[5px]"
-          onClick={(event) => event.stopPropagation()}
-          onKeyDown={(event) => event.stopPropagation()}
-        >
+        <div className="flex items-center gap-[5px]">
           {product.swatches.map((swatch, swatchIndex) => (
             <ColorSwatch
               key={`${swatch.sku}-${swatchIndex}`}
@@ -143,22 +133,19 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <>
       {shouldReduceMotion ? (
-        <article
-          role="button"
-          tabIndex={0}
-          onClick={() => setIsDetailOpen(true)}
-          onKeyDown={handleKeyDown}
-          className={cardClassName}
-        >
-          {imageArea}
+        <article className={cardClassName}>
+          <button
+            type="button"
+            className={imageOpenButtonClassName}
+            onClick={() => setIsDetailOpen(true)}
+            aria-label={openDetailLabel}
+          >
+            {imageArea}
+          </button>
           {metaArea}
         </article>
       ) : (
         <motion.article
-          role="button"
-          tabIndex={0}
-          onClick={() => setIsDetailOpen(true)}
-          onKeyDown={handleKeyDown}
           className={cardClassName}
           custom={index}
           variants={productCardRevealContainerVariants}
@@ -166,7 +153,15 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           whileInView="visible"
           viewport={productCardViewport}
         >
-          {imageArea}
+          <motion.button
+            type="button"
+            className={imageOpenButtonClassName}
+            onClick={() => setIsDetailOpen(true)}
+            aria-label={openDetailLabel}
+            variants={productCardImageZoneVariants}
+          >
+            {imageArea}
+          </motion.button>
           <motion.div
             className="flex items-end justify-between gap-4 p-4 max-[1300px]:flex-col max-[1300px]:items-start max-[768px]:flex-row max-[768px]:items-end max-[426px]:flex-col max-[426px]:items-start"
             variants={productCardContentVariants}
@@ -196,11 +191,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               className="flex shrink-0 flex-col items-end gap-4 max-[1300px]:items-start max-[768px]:items-end max-[426px]:items-start"
               variants={productCardContentItemVariants}
             >
-              <div
-                className="flex items-center gap-[5px]"
-                onClick={(event) => event.stopPropagation()}
-                onKeyDown={(event) => event.stopPropagation()}
-              >
+              <div className="flex items-center gap-[5px]">
                 {product.swatches.map((swatch, swatchIndex) => (
                   <ColorSwatch
                     key={`${swatch.sku}-${swatchIndex}`}

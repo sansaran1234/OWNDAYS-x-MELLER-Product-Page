@@ -64,7 +64,7 @@ function RevealCharacters({ message }: { message: string }) {
     <motion.span
       className="inline-flex flex-wrap perspective-[900px]"
       variants={charsContainerVariants}
-      aria-label={message}
+      aria-hidden
     >
       {message.split("").map((char, index) => (
         <span key={`${char}-${index}`} className="inline-block overflow-hidden">
@@ -144,7 +144,7 @@ export function DisplayMessage({
         variants={barVariants}
         aria-hidden
       />
-      <Tag className={textClassName}>
+      <Tag className={textClassName} aria-label={message}>
         <RevealCharacters message={message} />
       </Tag>
     </motion.div>
