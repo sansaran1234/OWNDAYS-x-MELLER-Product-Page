@@ -18,7 +18,7 @@ type DisplayMessageProps = {
 const sizeStyles = {
   hero: {
     container: "w-full max-w-[420px] max-[768px]:w-fit",
-    bar: "top-2 left-[5px] h-[78px] w-[415px] max-w-[calc(100%-5px)]",
+    bar: "top-2 left-[5px] h-[78px] w-[415px] max-w-[calc(100%-5px)] max-[768px]:!h-[3rem] max-[768px]:top-[20px]",
     text: "text-[64px] md:text-[110px] md:leading-[110px]",
   },
   section: {
