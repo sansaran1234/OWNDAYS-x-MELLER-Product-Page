@@ -18,13 +18,13 @@ type DisplayMessageProps = {
 const sizeStyles = {
   hero: {
     container: "w-full max-w-[420px] max-[768px]:w-fit",
-    bar: "top-2 left-[5px] h-[78px] w-[415px] max-w-[calc(100%-5px)] max-[768px]:!h-[3rem] max-[768px]:top-[20px]",
-    text: "text-[64px] md:text-[110px] md:leading-[110px]",
+    bar: "top-2 left-[5px] h-[78px] w-[415px] max-w-[calc(100%-5px)] max-[768px]:!h-[3rem] max-[768px]:top-[20px] max-[768px]:left-1",
+    text: "text-[64px] md:text-[110px] md:leading-[90px] max-[768px]:leading-[87px]",
   },
   section: {
     container: "w-auto max-w-none",
-    bar: "top-3 left-[6px] h-[80px] md:h-[114px] ",
-    text: "text-[56px] max-[768px]:text-[106px] md:text-[160px] md:leading-[160px] max-[577px]:!text-[70px]",
+    bar: "top-3 left-[6px] h-[80px] md:h-[114px] max-[768px]:!top-[10px] max-[577px]:!top-[.3rem] max-[577px]:!left-[.3rem]",
+    text: "text-[56px] max-[768px]:text-[106px] md:text-[160px] md:leading-[133px] max-[577px]:!text-[70px] max-[768px]:leading-[90px] max-[577px]:leading-[55px]",
   },
 } as const;
 
