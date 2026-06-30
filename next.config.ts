@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
-];
+const securityHeaders = [{ key: "X-Content-Type-Options", value: "nosniff" }];
 
 const nextConfig: NextConfig = {
   images: {
@@ -20,6 +16,10 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
+        headers: securityHeaders,
+      },
+      {
+        source: "/_next/:path*",
         headers: securityHeaders,
       },
     ];

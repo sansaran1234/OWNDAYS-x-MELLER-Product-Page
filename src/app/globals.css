@@ -52,6 +52,7 @@
 }
 
 html {
+  text-size-adjust: 100%;
   scroll-behavior: smooth;
   scrollbar-gutter: auto;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
