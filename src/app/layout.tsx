@@ -2,11 +2,21 @@ import type { Metadata } from "next";
 import { gtAmerica, gtAmericaCompressed } from "@/lib/fonts";
 import "./globals.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://owndays-x-meller-product-page.vercel.app");
+
+const siteTitle =
+  "商品一覧 | OWNDAYS × MELLER（メラー） 公式オンラインストア｜サングラス";
+const siteDescription =
+  "OWNDAYS × MELLER 商品一覧。デザイン性・機能性に優れたサステナブルな素材のサングラス（全てUV99%以上カット・偏光レンズ・傷防止コート・撥水コート）を展開中。";
+
 export const metadata: Metadata = {
-  title:
-    "商品一覧 | OWNDAYS × MELLER（メラー） 公式オンラインストア｜サングラス",
-  description:
-    "OWNDAYS × MELLER 商品一覧。デザイン性・機能性に優れたサステナブルな素材のサングラス（全てUV99%以上カット・偏光レンズ・傷防止コート・撥水コート）を展開中。",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     "商品一覧",
     "サングラス",
@@ -40,6 +50,26 @@ export const metadata: Metadata = {
     apple: "/favicon_io/apple-touch-icon.png",
   },
   manifest: "/favicon_io/site.webmanifest",
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+    siteName: "OWNDAYS × MELLER",
+    locale: "ja_JP",
+    type: "website",
+    images: [
+      {
+        url: "/images/figma/hero.webp",
+        alt: "OWNDAYS × MELLER",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/figma/hero.webp"],
+  },
 };
 
 export default function RootLayout({
