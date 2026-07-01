@@ -79,7 +79,9 @@ function getDefaultSku(item: ApiProductItem): ApiSku {
 function getFrameType(item: ApiProductItem): string {
   const frameCode = item.frame_types[0]?.code;
 
-  return frameCode ? frameCode.toUpperCase() : item.product_type.name.toUpperCase();
+  return frameCode
+    ? frameCode.toUpperCase()
+    : item.product_type.name.toUpperCase();
 }
 
 export function mapProductItemToProduct(item: ApiProductItem): Product {

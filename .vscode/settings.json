@@ -1,10 +1,12 @@
 {
+  // Format on save — ESLint runs Prettier rules via eslint-plugin-prettier
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
+
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
@@ -15,8 +17,7 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -24,6 +25,10 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   "eslint.useFlatConfig": true,
   "eslint.format.enable": true,
   "eslint.validate": [
@@ -32,7 +37,10 @@
     "typescript",
     "typescriptreact"
   ],
+
   "prettier.prettierPath": "./node_modules/prettier",
   "prettier.requireConfig": true,
-  "prettier.enable": true
+
+  // Match .editorconfig — prevents CRLF/LF lint errors on Windows
+  "files.eol": "\n"
 }
